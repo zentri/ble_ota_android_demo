@@ -1,0 +1,84 @@
+title OTA Sequence
+
+actor User as U
+participant OTAActivity as A
+participant TruconnectOTAService as S
+participant OTAManager as L
+participant BLEHandler as B
+
+S->L: init()
+activate L
+deactivate L
+L->S: onUpdateInitSuccess()
+
+S->L: readFirmwareVersion()
+activate L
+deactivate L
+L->S: onUpdateVersionRead()
+S->A: ACTION_CURRENT_VERSION_UPDATE
+
+S->L: checkForUpdates()
+activate L
+deactivate L
+L->S: onUpdateCheckComplete()
+S->A: ACTION_PROGRESS_MAX_UPDATE
+S->A: ACTION_UPDATE_VERSION_UPDATE
+alt Firmware up to date
+    S->A: ACTION_STATUS_UP_TO_DATE
+else Update available
+    S->A: ACTION_STATUS_READY
+end
+
+U->A: Update button pressed
+A->S: updateStart()
+activate S
+S->L: updateStart()
+activate L
+deactivate L
+deactivate S
+L->S: onUpdateStart()
+S->A: ACTION_STATUS_UPDATING
+loop for each packet sent
+    L->S: onUpdateDataSent()
+    S->A: ACTION_PROGRESS_UPDATE
+end
+L->S: onUpdateComplete()
+
+== Device reboots ==
+
+S->B: disconnect()
+activate B
+deactivate B
+S->B: connect()
+activate B
+deactivate B
+B->S: onConnect()
+
+S->L: readFirmwareVersion()
+activate L
+deactivate L
+L->S: onUpdateVersionRead()
+S->A: ACTION_CURRENT_VERSION_UPDATE
+
+S->L: isUpToDate(currentVersion)
+activate L
+L-->S: result
+deactivate L
+
+alt Firmware up to date
+    S->A: ACTION_STATUS_UP_TO_DATE
+else Update available
+    S->A: ACTION_STATUS_READY
+end
+
+alt error
+    L->S: onUpdateError()
+    S->A: ACTION_STATUS_ERROR
+end
+
+alt abort after onUpdateStart()
+    S->L: updateAbort()
+    activate L
+    deactivate L
+    L->S: onUpdateAborted()
+end

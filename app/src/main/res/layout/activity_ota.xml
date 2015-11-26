@@ -1,0 +1,117 @@
+<!--
+  ~ Copyright (C) 2015, Zentri, Inc. All Rights Reserved.
+  ~
+  ~ The Zentri BLE Android Libraries and Zentri BLE example applications are provided free of charge
+  ~ by Zentri. The combined source code, and all derivatives, are licensed by Zentri SOLELY for use
+  ~ with devices manufactured by Zentri, or devices approved by Zentri.
+  ~
+  ~ Use of this software on any other devices or hardware platforms is strictly prohibited.
+  ~ THIS SOFTWARE IS PROVIDED BY THE AUTHOR AS IS AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+  ~ BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+  ~ PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+  ~ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+  ~ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  ~ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+  ~ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  ~ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  ~
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:id="@+id/ota_view_root"
+                tools:context="com.zentri.otademo.OTAActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_version"
+        android:textColor="@color/black"
+        android:id="@+id/textview_current_version_heading"
+        android:textSize="22sp"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="26dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview_current_version"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_alignBottom="@id/textview_current_version_heading"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/textview_current_version_heading"
+        android:layout_marginTop="26dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:text="@string/update_version"
+        android:textColor="@color/black"
+        android:id="@+id/textview_update_version_heading"
+        android:layout_below="@+id/textview_current_version"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview_update_version"
+        android:textSize="22sp"
+        android:textColor="@color/zentri_orange"
+        android:layout_alignBottom="@id/textview_update_version_heading"
+        android:layout_marginLeft="52dp"
+        android:layout_toRightOf="@id/textview_update_version_heading"
+        android:layout_marginTop="26dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview_status"
+        android:textSize="22sp"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/textview_update_version"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_check"
+        android:textSize="22sp"
+        android:background="@drawable/zentri_button"
+        android:textColor="@drawable/zentri_button_text"
+        android:padding="10dp"
+        android:id="@+id/button"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true"/>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/textview_status"
+        android:layout_centerHorizontal="true"
+
+        android:minWidth="250dp"
+        android:maxWidth="250dp"/>
+
+</RelativeLayout>
