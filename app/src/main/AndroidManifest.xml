@@ -59,7 +59,7 @@
 
         <activity android:name="com.zentri.otademo.OTAActivity"
                   android:label="@string/title_activity_ota"
-                  android:icon="@color/transparent"
+                  android:icon="@drawable/transparent"
                   android:parentActivityName="com.zentri.otademo.ConnectActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                        android:value="com.zentri.otademo.ConnectActivity" />
